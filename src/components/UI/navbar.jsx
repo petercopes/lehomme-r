@@ -4,6 +4,8 @@ import { Flex, ListItem, UnorderedList } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/layout";
+import CartWidget from "../Cart/CartWidget";
+
 const NavBar = ({ navElems }) => {
   const navElements = navElems.map((e) => (
     <Flex m={2}>
@@ -23,6 +25,7 @@ const NavBar = ({ navElems }) => {
     <>
       <Flex
         m={0}
+        alignItems={"center"}
         justifyContent={"space-between"}
         bgColor={"rgba(22, 22, 22, 0.271)"}
         p={20}
@@ -30,6 +33,7 @@ const NavBar = ({ navElems }) => {
         <Heading>Le Homme</Heading>
         <Flex justifyContent={"flex-end"} as={UnorderedList}>
           {navElements}
+          <CartWidget />
         </Flex>
       </Flex>
     </>
