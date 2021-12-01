@@ -1,11 +1,12 @@
 import { Flex, Text } from "@chakra-ui/layout";
 import React from "react";
 import { Link } from "react-router-dom";
-import { MdAddShoppingCart } from "react-icons/md";
 import { Link as ChakraLink } from "@chakra-ui/layout";
-import { Button, Button as ChakraButton } from "@chakra-ui/button";
 import ItemCounter from "./ItemCounter";
 const ProductItem = ({ data }) => {
+  const onAddToCart = (id, amount) => {
+    console.log(id + " - amount:" + amount);
+  };
   return (
     <Flex
       p={"2%"}
@@ -37,10 +38,11 @@ const ProductItem = ({ data }) => {
         borderRadius={5}
         w={"30%"}
       >
-        <ItemCounter />
-        <Flex as={Button} justifySelf={"center"}>
-          <Text>Add to Cart</Text>
-        </Flex>
+        <ItemCounter
+          limit={data.stock}
+          idProduct={data.id}
+          clickHandler={onAddToCart}
+        />
       </Flex>
     </Flex>
   );
