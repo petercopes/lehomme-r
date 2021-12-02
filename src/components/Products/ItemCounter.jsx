@@ -29,7 +29,7 @@ const ItemCounter = ({ limit, clickHandler, idProduct }) => {
         as={Button}
         justifySelf={"center"}
         onClick={() => {
-          clickHandler(idProduct, counter);
+          clickHandler(counter);
         }}
       >
         <Text>Add to Cart</Text>

@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/layout";
 import ItemCounter from "./ItemCounter";
 const ProductItem = ({ data }) => {
-  const onAddToCart = (id, amount) => {
-    console.log(id + " - amount:" + amount);
+  const onAddToCart = (amount) => {
+    console.log(
+      data.id + " - amount:" + amount + "preciototal: " + data.price * amount
+    );
   };
   return (
     <Flex
