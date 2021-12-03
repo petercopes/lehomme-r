@@ -2,8 +2,8 @@ import { Button } from "@chakra-ui/button";
 import { Flex, Text } from "@chakra-ui/layout";
 import React, { useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-const ItemCounter = ({ limit, clickHandler, idProduct }) => {
-  const [counter, setCounter] = useState(0);
+const ItemCounter = ({ limit, clickHandler, buttonText, value = 0 }) => {
+  const [counter, setCounter] = useState(value);
   const removeHandler = () => {
     if (counter > 0) {
       setCounter(counter - 1);
@@ -25,15 +25,28 @@ const ItemCounter = ({ limit, clickHandler, idProduct }) => {
         <p>{counter}</p>
         <Button onClick={addHandler} as={AiOutlinePlus} />
       </Flex>
-      <Flex
-        as={Button}
-        justifySelf={"center"}
-        onClick={() => {
-          clickHandler(counter);
-        }}
-      >
-        <Text>Add to Cart</Text>
-      </Flex>
+      {counter > 0 ? (
+        <Flex
+          as={Button}
+          justifySelf={"center"}
+          onClick={() => {
+            clickHandler(counter);
+          }}
+        >
+          <Text>{buttonText}</Text>
+        </Flex>
+      ) : (
+        <Flex
+          as={Button}
+          disabled
+          justifySelf={"center"}
+          onClick={() => {
+            clickHandler(counter);
+          }}
+        >
+          <Text>{buttonText}</Text>
+        </Flex>
+      )}
     </Flex>
   );
 };

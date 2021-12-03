@@ -33,7 +33,9 @@ const NavBar = ({ navElems }) => {
         <Heading>Le Homme</Heading>
         <Flex justifyContent={"flex-end"} as={UnorderedList}>
           {navElements}
-          <CartWidget />
+          <Link to="cart">
+            <CartWidget />
+          </Link>
         </Flex>
       </Flex>
     </>

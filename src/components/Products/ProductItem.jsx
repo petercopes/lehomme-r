@@ -3,11 +3,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/layout";
 import ItemCounter from "./ItemCounter";
+import { useDispatch } from "react-redux";
+import { CartActions } from "../../store/cart-slice";
 const ProductItem = ({ data }) => {
-  const onAddToCart = (amount) => {
-    console.log(
-      data.id + " - amount:" + amount + "preciototal: " + data.price * amount
-    );
+  const dispatch = useDispatch();
+  const onAddToCart = (quantity) => {
+    const productToAdd = { ...data, amount: quantity };
+    console.log(productToAdd);
+    dispatch(CartActions.addToCart(productToAdd));
   };
   return (
     <Flex
@@ -41,6 +44,7 @@ const ProductItem = ({ data }) => {
         w={"30%"}
       >
         <ItemCounter
+          buttonText={"Add to cart"}
           limit={data.stock}
           idProduct={data.id}
           clickHandler={onAddToCart}
