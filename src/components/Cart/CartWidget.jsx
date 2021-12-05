@@ -1,13 +1,16 @@
 import Icon from "@chakra-ui/icon";
-import { Badge, Flex } from "@chakra-ui/layout";
+import { Badge, Flex, Text } from "@chakra-ui/layout";
+import { Tag, TagLabel, TagLeftIcon } from "@chakra-ui/tag";
 import React from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useSelector } from "react-redux";
 const CartWidget = () => {
+  const amount = useSelector((state) => state.cart.totalItems);
   return (
-    <Flex>
-      <Icon alignSelf={"center"} as={AiOutlineShoppingCart}></Icon>
-      <Badge></Badge>
-    </Flex>
+    <Tag variant="subtle">
+      <TagLeftIcon boxSize="12px" as={AiOutlineShoppingCart} />
+      <TagLabel>{amount}</TagLabel>
+    </Tag>
   );
 };
 export default CartWidget;

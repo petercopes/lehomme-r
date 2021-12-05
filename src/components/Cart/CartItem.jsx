@@ -15,11 +15,11 @@ const CartItem = ({ item }) => {
     dispatch(CartActions.updateAmountOnCart({ ...item, amount: quantity }));
   };
   return (
-    <Tr key={item.id}>
+    <Tr key={item.id} p={"0"}>
       <Td>{item.name}</Td>
-      <Td>
+      <Td m={0}>
         <ItemCounter
-          limit={item.limit}
+          limit={item.stock}
           buttonText={"Update Amount"}
           value={item.amount}
           clickHandler={updateAmountHandler}

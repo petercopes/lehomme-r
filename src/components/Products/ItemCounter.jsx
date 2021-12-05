@@ -15,15 +15,17 @@ const ItemCounter = ({ limit, clickHandler, buttonText, value = 0 }) => {
   return (
     <Flex direction={"column"}>
       <Flex
-        bgColor={"grey"}
         p={"1%"}
-        m={5}
+        m={"5%"}
         alignItems={"center"}
-        justifyContent={"space-evenly"}
+        borderRadius={"10px"}
+        justifyContent={"space-between"}
       >
-        <Button onClick={removeHandler} as={AiOutlineMinus} />
-        <p>{counter}</p>
-        <Button onClick={addHandler} as={AiOutlinePlus} />
+        <Button w={"30%"} onClick={removeHandler} as={AiOutlineMinus} />
+        <Text textAlign={"center"} w={"30%"}>
+          {counter}
+        </Text>
+        <Button w={"30%"} onClick={addHandler} as={AiOutlinePlus} />
       </Flex>
       {counter > 0 ? (
         <Flex
@@ -33,7 +35,7 @@ const ItemCounter = ({ limit, clickHandler, buttonText, value = 0 }) => {
             clickHandler(counter);
           }}
         >
-          <Text>{buttonText}</Text>
+          <Text textAlign={"center"}>{buttonText}</Text>
         </Flex>
       ) : (
         <Flex

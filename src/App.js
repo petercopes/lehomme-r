@@ -5,7 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import Products from "./screens/Products";
 import Home from "./screens/Home";
 import Product from "./screens/Product";
-import Cart from "./components/Cart/Cart";
+import Cart from "./screens/Cart";
+import Order from "./screens/Order";
 
 const MOCKDATA = [
   { name: "home", url: "home" },
@@ -23,6 +24,7 @@ function App() {
         ></Route>
         <Route path={"products/:id"} element={<Product />} />
         <Route path={"cart"} element={<Cart />} />
+        <Route path={"order"} element={<Order />} />
       </Routes>
     </>
   );

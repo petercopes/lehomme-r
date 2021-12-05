@@ -14,10 +14,10 @@ const ProductItem = ({ data }) => {
   };
   return (
     <Flex
+      bgColor={"rgb(129 128 128 / 18%)"}
       p={"2%"}
-      border={"1px solid black"}
       m={2}
-      borderRadius={"25px"}
+      borderRadius={"10px"}
       w={"45%"}
       h={"50%"}
       justifyContent={"space-between"}
@@ -37,12 +37,7 @@ const ProductItem = ({ data }) => {
         </ChakraLink>
         <p>${data.price}</p>
       </Flex>
-      <Flex
-        direction={"column"}
-        border={"1px solid black"}
-        borderRadius={5}
-        w={"30%"}
-      >
+      <Flex direction={"column"} w={"30%"}>
         <ItemCounter
           buttonText={"Add to cart"}
           limit={data.stock}

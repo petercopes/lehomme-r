@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/layout";
 import CartWidget from "../Cart/CartWidget";
+import { useSelector } from "react-redux";
 
 const NavBar = ({ navElems }) => {
   const navElements = navElems.map((e) => (
@@ -28,14 +29,17 @@ const NavBar = ({ navElems }) => {
         alignItems={"center"}
         justifyContent={"space-between"}
         bgColor={"rgba(22, 22, 22, 0.271)"}
-        p={20}
+        p={5}
+        mb={5}
       >
         <Heading>Le Homme</Heading>
         <Flex justifyContent={"flex-end"} as={UnorderedList}>
           {navElements}
-          <Link to="cart">
-            <CartWidget />
-          </Link>
+          <Flex m={2}>
+            <Link to="cart">
+              <CartWidget />
+            </Link>
+          </Flex>
         </Flex>
       </Flex>
     </>

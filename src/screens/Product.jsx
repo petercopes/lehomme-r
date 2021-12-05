@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import debounce from "lodash/debounce";
 import { useParams } from "react-router";
 import ProductDetail from "../components/Products/ProductDetail";
-const url = "https://60d8bcffeec56d00174774a8.mockapi.io/products";
+import { fetchProduct } from "../firebase/api";
 const Product = () => {
   const [product, setProduct] = useState();
   const [fetched, setFetched] = useState(false);
@@ -12,11 +12,8 @@ const Product = () => {
   useEffect(() => {
     const getProduct = async (idProduct) => {
       try {
-        const response = await axios.get(url + "/" + idProduct);
-        if (!response.status === 200) {
-          throw new Error("Could not fetch data!");
-        }
-        setProduct(response.data);
+        const product = await fetchProduct(idProduct);
+        setProduct(product);
         setFetched(true);
       } catch (error) {
         setFetched(true);
