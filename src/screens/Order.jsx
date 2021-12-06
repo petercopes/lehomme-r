@@ -5,14 +5,26 @@ import {
   FormLabel,
 } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/react";
-import { Flex, Heading, List, ListIcon, ListItem } from "@chakra-ui/layout";
+import {
+  Flex,
+  Heading,
+  List,
+  ListIcon,
+  ListItem,
+  Text,
+} from "@chakra-ui/layout";
 import { Field, Form, Formik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { useLocation } from "react-router";
 import { AiOutlineCheck } from "react-icons/ai";
+import { postOrder } from "../firebase/api";
+import { useDispatch } from "react-redux";
+import { CartActions } from "../store/cart-slice";
 const Order = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const [trackingId, setTrackingId] = useState("");
   const { items } = location.state;
   const schema = Yup.object({
     name: Yup.string().required("Por favor ingrese su nombre"),
@@ -22,6 +34,26 @@ const Order = () => {
       .required("Por favor ingrese su direccion de mail"),
     adress: Yup.string().required("Por favor ingrese una direccion valida"),
   });
+  const handlePurchase = async (values) => {
+    const buyer = {
+      name: values.name,
+      lastName: values.lastname,
+      email: values.email,
+      addres: values.adress,
+    };
+    let total = 0;
+    for (const item of items) {
+      total += item.amount * item.price;
+    }
+    const order = {
+      buyerInfo: buyer,
+      orderItems: items,
+      totalAmount: total,
+    };
+    const trackingID = await postOrder(order, items);
+    setTrackingId(trackingID);
+    dispatch(CartActions.emptyCart());
+  };
   return (
     <Flex>
       <Flex
@@ -35,17 +67,8 @@ const Order = () => {
         <Formik
           initialValues={{ name: "", lastname: "", email: "", adress: "" }}
           validationSchema={schema}
-          onSubmit={(values) => {
-            console.log("entra");
-            const order = {
-              name: values.name,
-              lastName: values.lastname,
-              email: values.email,
-              addres: values.adress,
-              orderItems: items,
-            };
-            console.log(order);
-            setTimeout(() => {}, 1000);
+          onSubmit={async (values) => {
+            await handlePurchase(values);
           }}
         >
           {(props) => (
@@ -112,12 +135,18 @@ const Order = () => {
       >
         <Heading mb={5}>Tu pedido</Heading>
         <List>
-          {items.map((e) => (
-            <ListItem>
-              <ListIcon as={AiOutlineCheck} />
-              {e.amount}x {e.name} - {e.amount * e.price}
-            </ListItem>
-          ))}
+          {trackingId !== "" ? (
+            <Text>
+              Gracias por tu compra! Tu numero de seguimiento es {trackingId}
+            </Text>
+          ) : (
+            items.map((e) => (
+              <ListItem>
+                <ListIcon as={AiOutlineCheck} />
+                {e.amount}x {e.name} - {e.amount * e.price}
+              </ListItem>
+            ))
+          )}
         </List>
       </Flex>
     </Flex>

@@ -9,7 +9,6 @@ const ProductItem = ({ data }) => {
   const dispatch = useDispatch();
   const onAddToCart = (quantity) => {
     const productToAdd = { ...data, amount: quantity };
-    console.log(productToAdd);
     dispatch(CartActions.addToCart(productToAdd));
   };
   return (

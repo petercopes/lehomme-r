@@ -8,7 +8,6 @@ const ProductDetail = ({ product }) => {
   const dispatch = useDispatch();
   const onAddToCart = (quantity) => {
     const productToAdd = { ...product, amount: quantity };
-    console.log(productToAdd);
     dispatch(CartActions.addToCart(productToAdd));
   };
   return (
