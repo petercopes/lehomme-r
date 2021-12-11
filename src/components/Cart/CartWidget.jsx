@@ -1,5 +1,3 @@
-import Icon from "@chakra-ui/icon";
-import { Badge, Flex, Text } from "@chakra-ui/layout";
 import { Tag, TagLabel, TagLeftIcon } from "@chakra-ui/tag";
 import React from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";

@@ -1,5 +1,4 @@
 import { Flex } from "@chakra-ui/react";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import debounce from "lodash/debounce";
 import { useParams } from "react-router";

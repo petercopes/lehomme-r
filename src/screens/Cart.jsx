@@ -1,14 +1,6 @@
 import React from "react";
 import { Flex, Heading, Text } from "@chakra-ui/layout";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-} from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import CartItem from "../components/Cart/CartItem";
 import { Link } from "react-router-dom";
@@ -17,7 +9,7 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   return (
     <Flex direction={"column"} m={5} p={5}>
-      <Heading>Your Cart</Heading>
+      <Heading>Tu Carrito</Heading>
       <Flex>
         {cartItems?.length !== 0 && cartItems !== undefined ? (
           <Table
@@ -29,8 +21,8 @@ const Cart = () => {
             <Thead>
               <Tr>
                 <Th>Item </Th>
-                <Th>Amount</Th>
-                <Th>Price</Th>
+                <Th>Cantidad</Th>
+                <Th>Precio</Th>
                 <Th></Th>
                 <Th></Th>
               </Tr>

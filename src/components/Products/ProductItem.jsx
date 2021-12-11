@@ -1,4 +1,4 @@
-import { Flex, Heading, Text } from "@chakra-ui/layout";
+import { Flex, Heading } from "@chakra-ui/layout";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/layout";
@@ -16,9 +16,9 @@ const ProductItem = ({ data }) => {
     <Flex
       bgColor={"rgb(129 128 128 / 18%)"}
       p={"2%"}
-      m={2}
+      m={"2% 5%"}
       borderRadius={"10px"}
-      w={"45%"}
+      w={"35%"}
       h={"50%"}
       justifyContent={"space-between"}
       direction={"column"}
@@ -42,7 +42,7 @@ const ProductItem = ({ data }) => {
         </Flex>
         <Flex direction={"column"} w={"30%"}>
           <ItemCounter
-            buttonText={"Add to cart"}
+            buttonText={"Añadir"}
             limit={data.stock}
             idProduct={data.id}
             clickHandler={onAddToCart}

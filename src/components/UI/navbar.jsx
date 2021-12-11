@@ -5,11 +5,10 @@ import { Link } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import { Heading } from "@chakra-ui/layout";
 import CartWidget from "../Cart/CartWidget";
-import { useSelector } from "react-redux";
 
 const NavBar = ({ navElems }) => {
-  const navElements = navElems.map((e) => (
-    <Flex m={2}>
+  const navElements = navElems.map((e, index) => (
+    <Flex m={2} key={index}>
       <ListItem listStyleType="none">
         <ChakraLink
           as={Link}

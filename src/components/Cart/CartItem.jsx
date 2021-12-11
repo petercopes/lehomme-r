@@ -8,7 +8,6 @@ import ItemCounter from "../Products/ItemCounter";
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
   const removeHandler = () => {
-    console.log("enters remove");
     dispatch(CartActions.removeFromCart(item));
   };
   const updateAmountHandler = (quantity) => {
@@ -20,7 +19,7 @@ const CartItem = ({ item }) => {
       <Td m={0}>
         <ItemCounter
           limit={item.stock}
-          buttonText={"Update Amount"}
+          buttonText={"Actualizar"}
           value={item.amount}
           clickHandler={updateAmountHandler}
         />

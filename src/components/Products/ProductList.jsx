@@ -4,7 +4,7 @@ import ProductItem from "./ProductItem";
 const ProductList = ({ products }) => {
   const content = products.map((e) => <ProductItem key={e.id} data={e} />);
   return (
-    <Flex p={10} wrap={"wrap"}>
+    <Flex p={10} wrap={"wrap"} justifyContent="center">
       {content}
     </Flex>
   );
